@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>Pomodoro Clock</title>
+    </head>
+    <body>
+        <div>
+            <span id="menosBreak"> - </span><div id="break">5</div><span id="maisBreak"> + </span>
+        </div>
+        <br>
+        <div>
+            <span id="menosClock"> - </span><div id="clock">25</div><span id="maisClock"> + </span>
+        </div>
+        
+        <button id="start">START!</button>
+        <button id="reset">RESET</button>
+    </body>
+    <script>
+        let baseMin = 25*60
+        let breakMin = 5*60
+
+        document.getElementById("reset").addEventListener('click', function(){
+            baseMin = 25*60
+            breakMin = 5*60
+        })
+
+        document.getElementById("menosClock").addEventListener('click', function(){
+            baseMin -= 60
+        })
+
+        document.getElementById("maisClock").addEventListener('click', function(){
+            baseMin += 60
+        })
+
+        document.getElementById("menosBreak").addEventListener('click', function(){
+            breakMin -= 60
+        })
+
+        document.getElementById("maisBreak").addEventListener('click', function(){
+            breakMin += 60
+        })
+
+        //START
+        document.getElementById("start").addEventListener('click', function(){
+            setInterval(function() {
+                if (baseMin > 1){
+                    document.getElementById("clock").innerHTML = Math.trunc(baseMin/60)
+                    baseMin--
+                } else {
+                    document.getElementById("break").innerHTML = Math.trunc(breakMin/60)
+                    breakMin--
+                }
+            }, 1000)
+        })
+    </script>
+</html>
